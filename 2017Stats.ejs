@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2017 AL Hitter List</title>
+    <link rel="stylesheet" href="/index.css">
+    <style>
+        body {
+            background: #5c6878;;
+            color:black;
+        }
+        .sitebody{
+            background-color: #fff;
+            width:1248px;
+            margin: 0 auto;
+            padding:10px;
+        }
+        .nameDivPa {
+            text-align: center;
+        }
+
+        .nameDiv {
+            /* margin-left:25%; */
+            /* transform: translate(-50%); */
+
+            text-align: left;
+            display: inline-block;
+            width: 300px;
+            
+        }
+
+        .header>th {
+            background-color: #333;
+            text-align: center;
+            color:#fff;
+        }
+
+        tr>td {
+            /* text-align: left;             */
+            background-color: white;
+        }
+
+        table {
+            width: 100%
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #555;
+            border-collapse: collapse;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .header__nav-top {
+            background-color: #041e42;
+            position: relative;
+            height: 70px;
+            display: block
+        }
+
+        .menugroup {
+            height: 70px;
+            /* background-color: green; */
+            position: absolute;
+            top: 0px;
+            font-size: 0px;
+            padding: 0px;
+        }
+
+        .header__nav-top>.rightside {
+            right: 0px;
+        }
+
+        .header__nav-top>.leftside {
+            left: 100px;
+        }
+
+        .header__nav-top .menuitem {
+            transform: translateY(-50%);
+            margin-top: 35px;
+            font-size: 30px;
+            border-bottom: 0px solid #ffff00;
+            display: inline-block;
+            /* background-color: red; */
+        }
+
+        .header__nav-top .menuitem>a {
+            color: white;
+        }
+
+        .header__nav-top>.rightside>.menuitem {
+            margin-right: 15px;
+        }
+
+        .header__nav-top>.leftside>.menuitem {
+            margin-left: 15px;
+        }
+
+        #logo {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        div.header__mnav-top {
+            /* background: red; */
+            display: none;
+        }
+
+        #imgtd {
+            width: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        @media screen and (max-width: 600px) {
+            div.header__nav-top {
+                /* background: red; */
+                display: none;
+            }
+
+            div.header__mnav-top {
+                /* background: red; */
+                position: relative;
+                background-color: #041e42;
+                display: block;
+                text-align: center;
+
+            }
+
+            div.header__mnav-top>img {
+                margin-top: 5px;
+            }
+
+            .menugroupMobile {
+                padding: 0px;
+                border: 0px solid red;
+                font-size: 0px;
+                display: table;
+                width: 100%;
+            }
+
+            .menugroupMobile>li {
+                border: 0px solid white;
+                display: table-cell;
+                font-size: 20px;
+                width: 25%;
+            }
+
+            .menugroupMobile>li>a {
+                color: white;
+            }
+
+            #hambergur {
+                position: absolute;
+                left: 5px;
+                top: 0px;
+                font-size: 20px;
+                /* background-color: red; */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header__nav-top">
+        <a href="https://mlbplayerlist.com/project1">
+            <img src="//www.mlbstatic.com/team-logos/league-on-dark/1.svg" id="logo" height="50">
+        </a>
+        <ul class="menugroup leftside">
+            
+            <li class="menuitem"><a href="https://mlbplayerlist.com/project1">Home</a></li>
+            
+        </ul>
+        <ul class="menugroup rightside">
+            <!-- <li class="menuitem"><a href="https://mlbplayerlist.com/schedule">Result</a></li> -->
+        </ul>
+    </div>
+
+    <div class="header__mnav-top">
+        <div id="hambergur"><i class="fas fa-bars"></i></div>
+        <img src="//www.mlbstatic.com/team-logos/league-on-dark/1.svg" height="25">
+        <ul class="menugroupMobile bottomside">
+            <!-- <li class="menuitem"><a href="https://mlbplayerlist.com/schedule">Search</a></li> -->
+        </ul>
+    </div>
+
+    <div class="sitebody">
+        <table>
+            <tr class="header">
+                <th>Player Name</th>
+                <th>Team</th>
+                <th>Link</th>
+            </tr>
+            <% for(let i=0;i< Object.keys(pList).length;i++){ %>
+                <tr>
+                    <td class="name">
+                        <div class="nameDivPa"
+                        
+                            style="border-left:20px solid; background:white; color:#041e42  ">
+                            <div class="nameDiv">  <img src="<%-pList[(Object.keys(pList))[i]]["pInfo"]["teamlog"]%>" height="15" />
+                                <%=pList[(Object.keys(pList))[i]]["pInfo"]["name"]%>
+                            </div>
+                        </div>
+                    </td>
+
+
+                    <td class="position" style="color : black; text-align: center;">
+                        <%=pList[(Object.keys(pList))[i]]["pInfo"]["teamName"]%>
+                    </td>
+                    <td class="detail", style="text-align: center;">
+                        <div>
+                            <a href="https://mlbplayerlist.com/hitInfo?pid=<%=pList[(Object.keys(pList))[i]]["pInfo"]["batterid"]%>">
+                                2017HitStats
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+    
+    <script>
+
+    </script>
+</body>
+
+</body>
+
+</html>

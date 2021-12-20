@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://pixijs.download/v6.1.2/pixi.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kstost/ksttool/ksttool.js"></script>
+    <title><%=pInfo[0].fullName%> Page </title>
+    <link rel="stylesheet" href="/index.css">
+    <style>
+        body {
+            background: #5c6878;
+            ;
+            color: black;
+        }
+
+        .sitebody {
+            background-color: #fff;
+            width: 1248px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .header>th {
+            background-color: #70706F;
+            text-align: center;
+            color: white;
+        }
+
+        tr>td {
+            text-align: center;
+            /* color:red; */
+        }
+
+        table {
+            width: 100%
+        }
+        
+        .goBack {
+            
+            color : #f7f7f7;
+            height: 70px;
+            color: white;
+            background-color:<%-JSON.parse(teamAdditionalInfo["color"])[0]%>;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #555;
+            border-collapse: collapse;
+        }
+
+        .season {
+            background-color: #f7f7f7;
+        }
+
+        .nTeams {
+            background-color: yellow;
+        }
+
+        * {
+            box-sizing: border-box;
+            color: #041e42;
+        }
+
+        .header__nav-top {
+            background-color: #041e42;
+            position: relative;
+            height: 70px;
+            display: block
+        }
+
+        .menugroup {
+            height: 70px;
+            /* background-color: green; */
+            position: absolute;
+            top: 0px;
+            font-size: 0px;
+            padding: 0px;
+        }
+
+        .header__nav-top>.rightside {
+            right: 0px;
+        }
+
+        .header__nav-top>.leftside {
+            left: 100px;
+        }
+
+        .header__nav-top .menuitem {
+            transform: translateY(-50%);
+            margin-top: 35px;
+            font-size: 30px;
+            border-bottom: 0px solid #ffff00;
+            display: inline-block;
+            /* background-color: red; */
+        }
+
+        .header__nav-top .menuitem>a {
+            color: white;
+        }
+
+        .header__nav-top>.rightside>.menuitem {
+            margin-right: 15px;
+        }
+
+        .header__nav-top>.leftside>.menuitem {
+            margin-left: 15px;
+        }
+
+        #logo {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        div.header__mnav-top {
+            /* background: red; */
+            display: none;
+        }
+
+        #imgtd {
+            width: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        @media screen and (max-width: 600px) {
+            div.header__nav-top {
+                /* background: red; */
+                display: none;
+            }
+
+            div.header__mnav-top {
+                /* background: red; */
+                position: relative;
+                background-color: #041e42;
+                display: block;
+                text-align: center;
+
+            }
+
+            div.header__mnav-top>img {
+                margin-top: 5px;
+            }
+
+            .menugroupMobile {
+                padding: 0px;
+                border: 0px solid red;
+                font-size: 0px;
+                display: table;
+                width: 100%;
+            }
+
+            .menugroupMobile>li {
+                border: 0px solid white;
+                display: table-cell;
+                font-size: 20px;
+                width: 25%;
+            }
+
+            .menugroupMobile>li>a {
+                color: white;
+            }
+
+            #hambergur {
+                position: absolute;
+                left: 5px;
+                top: 0px;
+                font-size: 20px;
+                /* background-color: red; */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header__nav-top">
+        <a href="https://mlbplayerlist.com/project1">
+            <img src="//www.mlbstatic.com/team-logos/league-on-dark/1.svg" id="logo" height="50">
+        </a>
+        <ul class="menugroup leftside">
+            <li class="menuitem"><a href="https://mlbplayerlist.com/project1">Home</a></li>
+            <li class="menuitem"><a href="https://mlbplayerlist.com/2017Stats">2017Stats</a></li>
+        </ul>
+        <ul class="menugroup rightside">
+            <!-- <li class="menuitem"><a href="https://mlbplayerlist.com/project1">Home</a></li> -->
+        </ul>
+    </div>
+
+    <div class="header__mnav-top">
+        <div id="hambergur"><i class="fas fa-bars"></i></div>
+        <img src="//www.mlbstatic.com/team-logos/league-on-dark/1.svg" height="25">
+        <ul class="menugroupMobile bottomside">
+
+
+        </ul>
+    </div>
+    
+
+    <div class="sitebody">
+        <div style="overflow:auto;">
+            <div style="display:inline-block;float: left;"><img alt="player" src="<%=pInfo[0].image%>"
+                    style="width:213px;"></div>
+            <div style="width:calc(100% - 213px);display:inline-block;float: left;padding:10px;">
+                <img src="<%-teamAdditionalInfo["logo"]%>" height="25" />
+                <div style="font-size: 30px;display:inline-block; background-color:<%-JSON.parse(teamAdditionalInfo["color"])[0]%>; color : #f7f7f7; font-family: Helvetica;  font-weight: bold; ">
+                    
+                    <%=pInfo[0].fullName%>
+                        |
+                    <%=pInfo[0]["primaryPosition"]["name"]%>
+                </div>
+                <table style="width:100%;">
+                    <tr>
+                        <td>Birth of Date</td>
+                        <td>
+                            <%=pInfo[0].birthDate%>
+                        </td>
+                        <td>MLB Debut Date</td>
+                        <td>
+                            <%=pInfo[0]["mlbDebutDate"]%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Born</td>
+                        <td>
+                            <%=pInfo[0].birthCountry%>
+                        </td>
+                        <td>Height</td>
+                        <td>
+                            <%=pInfo[0].height%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>
+                            <%=pInfo[0].weight%>
+                        </td>
+                        <td>NickName</td>
+                        <td>
+                            <%=pInfo[0].nickName===undefined ? "--" :pInfo[0].nickName %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+        <% if(isStats){%>
+
+            <div style="background-color:<%-JSON.parse(teamAdditionalInfo["color"])[0]%>; color : #f7f7f7; font-family: Helvetica; padding: 15px; font-weight: bold;">
+                Player stats
+            </div>
+            <% if (pInfo[0]["primaryPosition"]["abbreviation"]==="P" ) { %>
+
+                <table>
+                    <tr class="header">
+                        <th>Season</th>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>ERA</th>
+                        <th>G</th>
+                        <th>GS</th>
+                        <th>CG</th>
+                        <th>SHO</th>
+                        <th>IP</th>
+                        <th>BB</th>
+                        <th>SO</th>
+                        <th>WHIP</th>
+                    </tr>
+                    <% for(let i=0; i< pInfo[0]["statsInfo"][0]["splits"].length; i++){ %>
+                        <tr>
+                            <% if ( pInfo[0]["statsInfo"][0]["splits"][i]["team"]===undefined ) { %>
+                                <td class="nTeams">
+                                    <%=pInfo[0]["statsInfo"][0]["splits"][i]["season"]%>
+                                </td>
+                                <td class="nTeams">
+                                    <%= pInfo[0]["statsInfo"][0]["splits"][i]["numTeams"]+" teams" %>
+                                </td>
+                                <%}else{%>
+                                    <td class="season">
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["season"]%>
+                                    </td>
+                                    <td>
+                                        <%= pInfo[0]["statsInfo"][0]["splits"][i]["team"]["name"] %>
+                                    </td>
+
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["wins"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["losses"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["era"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["gamesPlayed"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["gamesStarted"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["completeGames"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["shutouts"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["inningsPitched"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["baseOnBalls"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["strikeOuts"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["whip"]%>
+                                    </td>
+                                    <%}%>
+
+                        </tr>
+                        <% } %>
+                </table>
+                <%}else{ %>
+                    <table>
+                        <tr class="header">
+                            <th>Season</th>
+                            <th>Team</th>
+                            <th>G</th>
+                            <th>AB</th>
+                            <th>R</th>
+                            <th>H</th>
+                            <th>HR</th>
+                            <th>RBI</th>
+                            <th>AVG</th>
+                            <th>OBP</th>
+                            <th>SLG</th>
+                            <th>OPS</th>
+                        </tr>
+                        <% let yearByyear=pInfo[0]["statsInfo"][0]["splits"]%>
+                            <% for(let i=0; i<pInfo[0]["statsInfo"][0]["splits"].length; i++){ %>
+                                <tr>
+                                    <td class="season">
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["season"]%>
+                                    </td>
+                                    <td>
+                                        <%= pInfo[0]["statsInfo"][0]["splits"][i]["team"]===undefined? "--" :
+                                            pInfo[0]["statsInfo"][0]["splits"][i]["team"]["name"] %>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["gamesPlayed"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["atBats"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["runs"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["hits"]%>
+                                    </td>
+                                    <td class="losses">
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["homeRuns"]%>
+                                    </td>
+                                    <td class="ops">
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["rbi"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["avg"]%>
+                                    </td>
+                                    <td>
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["obp"]%>
+                                    </td>
+                                    <td class="era">
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["slg"]%>
+                                    </td>
+                                    <td class="era">
+                                        <%=pInfo[0]["statsInfo"][0]["splits"][i]["stat"]["ops"]%>
+                                    </td>
+                                </tr>
+                                <% } %>
+                    </table>
+                    <%} %>
+                        <%}else{ %>
+                            <div>
+                                No MLB stats information
+                            </div>
+                            <%} %>
+                <div style="margin-top: 50px;"> </div>                            
+                <button class="goBack" >
+                    <a style="color:#fff; font-family: Helvetica; font-weight: bold"
+                        href=<%=`https://mlbplayerlist.com/teamRoster?teamId=${teamId}`%>>GoBackRoster</a>
+                </button>
+    </div>
+    
+    <!-- <script src="pInfo.js"></script> -->
+
+    <script>
+        
+
+        window.addEventListener('load', async function () {
+           
+        }) 
+    </script>
+</body>
+
+
+
+</html>

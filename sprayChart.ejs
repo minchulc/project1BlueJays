@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://pixijs.download/v6.1.2/pixi.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kstost/ksttool/ksttool.js"></script>
+    <title>2017 <%= pInfo2017["fullName"] %>
+    </title>
+    <link rel="stylesheet" href="/index.css">
+    <style>
+        body {
+            background: #5c6878;
+            ;
+            color: black;
+        }
+
+        .sitebody {
+            background-color: #fff;
+            width: 1248px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .header>th {
+            background-color: #70706F;
+            text-align: center;
+            color: white;
+        }
+
+        tr>td {
+            text-align: center;
+            /* color:red; */
+        }
+
+        table {
+            width: 100%
+        }
+
+        .goBack {
+            background-color: #041e42;
+            height: 70px;
+            color: white;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #555;
+            border-collapse: collapse;
+        }
+
+        .season {
+            background-color: #f7f7f7;
+        }
+
+        .nTeams {
+            background-color: yellow;
+        }
+
+        * {
+            box-sizing: border-box;
+            color: #041e42;
+        }
+
+        .header__nav-top {
+            background-color: #041e42;
+            position: relative;
+            height: 70px;
+            display: block
+        }
+
+        .menugroup {
+            height: 70px;
+            /* background-color: green; */
+            position: absolute;
+            top: 0px;
+            font-size: 0px;
+            padding: 0px;
+        }
+
+        .header__nav-top>.rightside {
+            right: 0px;
+        }
+
+        .header__nav-top>.leftside {
+            left: 100px;
+        }
+
+        .header__nav-top .menuitem {
+            transform: translateY(-50%);
+            margin-top: 35px;
+            font-size: 30px;
+            border-bottom: 0px solid #ffff00;
+            display: inline-block;
+            /* background-color: red; */
+        }
+
+        .header__nav-top .menuitem>a {
+            color: white;
+        }
+
+        .header__nav-top>.rightside>.menuitem {
+            margin-right: 15px;
+        }
+
+        .header__nav-top>.leftside>.menuitem {
+            margin-left: 15px;
+        }
+
+        #logo {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        div.header__mnav-top {
+            /* background: red; */
+            display: none;
+        }
+
+        #imgtd {
+            width: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        @media screen and (max-width: 600px) {
+            div.header__nav-top {
+                /* background: red; */
+                display: none;
+            }
+
+            div.header__mnav-top {
+                /* background: red; */
+                position: relative;
+                background-color: #041e42;
+                display: block;
+                text-align: center;
+
+            }
+
+            div.header__mnav-top>img {
+                margin-top: 5px;
+            }
+
+            .menugroupMobile {
+                padding: 0px;
+                border: 0px solid red;
+                font-size: 0px;
+                display: table;
+                width: 100%;
+            }
+
+            .menugroupMobile>li {
+                border: 0px solid white;
+                display: table-cell;
+                font-size: 20px;
+                width: 25%;
+            }
+
+            .menugroupMobile>li>a {
+                color: white;
+            }
+
+            #hambergur {
+                position: absolute;
+                left: 5px;
+                top: 0px;
+                font-size: 20px;
+                /* background-color: red; */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header__nav-top">
+        <a href="https://mlbplayerlist.com/project1">
+            <img src="//www.mlbstatic.com/team-logos/league-on-dark/1.svg" id="logo" height="50">
+        </a>
+        <ul class="menugroup leftside">
+            <li class="menuitem"><a href="https://mlbplayerlist.com/project1">Home</a></li>
+        </ul>
+        <ul class="menugroup rightside">
+            <!-- <li class="menuitem"><a href="https://mlbplayerlist.com/project1">Home</a></li> -->
+        </ul>
+    </div>
+
+    <div class="header__mnav-top">
+        <div id="hambergur"><i class="fas fa-bars"></i></div>
+        <img src="//www.mlbstatic.com/team-logos/league-on-dark/1.svg" height="25">
+        <ul class="menugroupMobile bottomside">
+
+
+        </ul>
+    </div>
+
+
+    <div class="sitebody">
+        <div style="overflow:auto;">
+            <div style="display:inline-block;float: left;"><img alt="player" src="<%=pInfo2017["image"]%>"
+                style="width:213px;"></div>
+            <div style="width:calc(100% - 213px);display:inline-block;float: left;padding:10px;">
+                <div style="font-size: 30px;display:inline-block">
+                    <%= pInfo2017["fullName"] %> (<%= pInfo2017["primaryPosition"]["abbreviation"] %>)
+                            |
+                            <%= teamName%>
+                </div>
+
+                <table style="width:100%;">
+                    <tr>
+                        <td>Birth of Date</td>
+                        <td>
+                            <%= pInfo2017["birthDate"]%>
+
+                        </td>
+                        <td>MLB Debut Date</td>
+                        <td>
+                            <%= pInfo2017["mlbDebutDate"]%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Born City</td>
+                        <td>
+                            <%=pInfo2017["birthCity"] %>
+                        </td>
+                        <td>Height</td>
+                        <td>
+                            <%=pInfo2017["height"] %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>
+                            <%= pInfo2017["weight"]%>
+                        </td>
+                        <td>NickName</td>
+                        <td>
+                            <%= pInfo2017["nickName"]%>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+            </div>
+        </div>
+        <table>
+            <div style=" background-color: #041e42; color:#f7f7f7; font-size: 30px; margin-top: 30px;">
+                2017 Season
+            </div>
+            <%for( let i=0; i < batStat2017.length; i++){ %>
+                <tr class="header">
+                    <th>Team</th>
+                    <th>League</th>
+                    <th>G</th>
+                    <th>AB</th>
+                    <th>R</th>
+                    <th>H</th>
+                    <th>TB</th>
+                    <th>HR</th>
+                    <th>AVG</th>
+                    <th>OBP</th>
+                    <th>SLG</th>
+                    <th>OPS</th>
+                    <th>GO/AO</th>
+                </tr>
+                <tr>
+                    <td>
+                        <%= batStat2017[i]["team"]["name"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["league"]["name"].split(" ")[0]%>
+                    </td>
+                    <td> 
+                        <%= batStat2017[i]["stat"]["gamesPlayed"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["atBats"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["runs"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["hits"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["totalBases"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["homeRuns"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["avg"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["obp"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["slg"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["ops"]%>
+                    </td>
+                    <td>
+                        <%= batStat2017[i]["stat"]["groundOutsToAirouts"] %>
+                    </td>
+                </tr>
+                <%}%>
+
+        </table>
+    </div>
+
+    <!-- <script src="pInfo.js"></script> -->
+
+    <script>
+        let ballList = [];
+
+        window.addEventListener('load', async function () {
+
+            function getHitColorDisplay(list) {
+                let obj = {};
+                list.forEach(elem => {
+                    if (!obj[elem["result_type"]]) {
+                        obj[elem["result_type"]] = elem["hitcolor"];
+                    }
+                })
+                return (obj);
+            }
+            let pId = <%=playerID%>;
+            let list = await fetch(`https://mlbplayerlist.com/spraychart?playerInfo=${pId}`);
+            list = await list.json();
+            // console.log( list);
+            let empty = list.length === 0 ? true : false;
+            if (!empty) {
+                let sprayChartLabel = document.createElement("div");
+                sprayChartLabel.innerText = "Hit Spray Chart";
+                sprayChartLabel.style = "background-color: #041e42; color:#f7f7f7; font-size: 30px; margin-top: 50px;";
+                document.querySelector(".sitebody").appendChild(sprayChartLabel);
+
+                let sprayChart = document.createElement("div");
+                let pixiSpan = document.createElement("div");
+                let selector = document.createElement("div");
+
+                sprayChart.appendChild(pixiSpan);
+                sprayChart.appendChild(selector);
+                document.querySelector(".sitebody").appendChild(sprayChart);
+
+                let zoneData = list;
+                // makeSelect([["", "PitcherSide"],["L", "왼손"],["R", "오른손"]], "pitchside");
+                let selectList = [];
+                selectList.push(makeSelect(selectList,makeList(list, "result_type"), "result_type"));
+                selectList.push(makeSelect(selectList,makeList(list, "pitchside"), "pitchside"));
+                selectList.push(makeSelect(selectList,makeList(list, "pitchername"), "pitchername"));
+                selectList.push(makeSelect(selectList,makeList(list, "park"), "park"));
+
+
+                let ratio_ = 1;
+                let app = makeBackGround(ratio_);
+                makeField(app);
+
+                let hitColorInfo = getHitColorDisplay(list);
+
+                function drawHitColorDisplay(hitColorInfo, app) {
+                    let { width, height } = app.view;
+                    let distance = width / 5;
+                    width = width / 6;
+
+                    Object.keys(hitColorInfo).forEach((elem, index) => {
+                        let circle = new PIXI.Graphics();
+                        circle.beginFill(hitColorInfo[elem]);
+                        circle.drawCircle(0, 0, 6);
+                        circle.endFill();
+                        circle.x = width;
+                        circle.y = height;
+                        app.stage.addChild(circle);
+                        let text = new PIXI.Text(`${elem}`, { fontFamily: 'Arial', fontSize: 20, fill: 0x1000000, align: 'center' });
+                        width += (distance);
+                        circle.addChild(text);
+                    });
+                }
+                drawHitColorDisplay(hitColorInfo, app);
+
+                zoneData.forEach((hitInfo, idx) => {
+                    let cir = makeCircle(hitInfo, ratio_, app, hitInfo["landing_location_x"], hitInfo["landing_location_y"], hitInfo["hitcolor"]);
+                    ballList.push({
+                        graphic: cir,
+                        info: hitInfo
+                    });
+                })
+                ballList.forEach((elem, indx) => {
+                    let dot = elem["graphic"];
+                    let pixipos = app.view.getBoundingClientRect();
+
+                    dot.interactive = true;
+                    dot.mouseover = function (ee) {
+                        if(dot.alpha!==1)return;
+                        let _x = dot.x + pixipos.x - 3;
+                        let _y = dot.y + pixipos.y - 3;
+                        // dot.alpha = 0.5
+                        let div = document.createElement("div");
+                        let body = document.querySelector("body");
+
+                        let dist = calDistance(elem);
+
+                        div.innerText = a;
+                        div.innerText = `Date : ${elem["info"]["date"]}
+                            Dist        : ${dist}ft
+                            Park        : ${elem["info"]["park"]}
+                            Pitcher     : ${elem["info"]["pitchername"]}
+                            PitchType   : ${elem["info"]["pitch_type"]}
+                            Result Type : ${elem["info"]["result_type"]}
+                            Game ID     : ${elem["info"]["gamepk"]}`;
+
+                        div.style.border = "1px solid red";
+                        div.style.background = "#FFFFFF";
+                        body.appendChild(div);
+                        div.style.position = "absolute";
+                        div.style.top = `${_y}px`;
+                        div.style.left = `${_x}px`;
+                        div.addEventListener('mouseout', e => {
+                            // dot.alpha = 1;
+                            // var myobj = document.getElementById("dd");
+                            div.remove();
+                        })
+
+                    }
+                })
+
+                function calDistance(elem) {
+                    let x = Math.pow(Number(elem["info"]["landing_location_x"]), 2);
+                    let y = Math.pow(Number(elem["info"]["landing_location_y"]), 2);
+                    return Math.sqrt(x + y).toFixed(2);
+                }
+
+
+                function makeList(data, key) {
+                    let obj = {};
+                    data.forEach(elem => {
+                        let vari = elem[key.toLowerCase()];
+                        if (!obj[vari]) {
+                            obj[vari] = vari;
+                        }
+                    })
+                    let title = key;
+                    return [title].concat(Object.keys(obj));
+                }
+                // let previous;
+                function makeSelect(slist, array, key) {
+                    let selectList = document.createElement("select");
+                    // console.log( array);
+                    for (let i = 0; i < array.length; i++) {
+                        let option = document.createElement("option");
+                        option.value = array[i];
+                        option.text = array[i];
+                        selectList.appendChild(option);
+                    }
+
+                    selectList[Symbol.for('setAsFirst')] = ()=>{
+                        selectList.value = array[0]
+                    }
+
+                    selectList.onchange = async function (ev) {
+                        let selectedValue = selectList.value;
+                        slist.filter(s=>s!==selectList).forEach ( elem =>{
+                            elem[Symbol.for('setAsFirst')]();
+                        });
+                        
+                        off();
+                        ballList.forEach(elem => {
+
+                            if (elem["info"][key] === selectedValue || selectedValue === "") {
+                                elem["graphic"].alpha = 1;
+                            } else if (selectedValue === key) {
+                                elem["graphic"].alpha = 1;
+                            }
+                        })
+                        
+                    };;
+                    selector.appendChild(selectList);
+                    return selectList;
+                }
+           
+
+                function off() {
+                    ballList.forEach(elem => {
+                        elem["graphic"].alpha = 0.1;
+                    })
+                }
+
+   
+                function makeBackGround(ratio_) {
+                    let w = 600;
+                    let h = 600;
+                    let app = new PIXI.Application({
+                        width: w * ratio_,
+                        height: h * ratio_,
+                        antialias: true,
+                        resolution: window.devicePixelRatio,
+                        // 전체 배경색 조정 
+                        backgroundColor: 0x04981D,
+                        autoDensity: true,
+                    });
+                    let { width, height } = app.screen;
+                    pixiSpan.appendChild(app.view);         // ???
+                    app.stage.sortableChildren = true;
+
+                    return app;
+                }
+
+                /*
+                    - HR : red 
+                    - single : black  
+                    - Double :blue
+                    - Triple : yellow
+                */
+                function makeCircle(hitInfo, ratio_, app, x, y, color) {
+                    let { width, height } = app.screen;
+                    let baseLocation = width / 3.3;
+                    let circle = new PIXI.Graphics();
+                    circle.beginFill(color);
+                    circle.drawCircle(0, 0, 3);
+                    circle.endFill();
+                    app.stage.addChild(circle);
+                    let scale = 1;
+                    x = (Number(x)) * scale;
+                    y = (Number(y)) * scale;
+                    circle.x = x + (width / 2);
+                    circle.y = (y * -1) + baseLocation + (height / 2);
+                    return circle;
+                }
+
+
+                function makeField(app) {
+                    let { width, height } = app.screen;
+                    ratio_ = 1;
+                    let lineSize = 2 * ratio_;
+                    let radius = width * 0.55;
+                    let num = 8;
+                    let arcAngle = Math.PI * 0.5;
+                    let sliceCount = 4;
+                    let angle = arcAngle / sliceCount;
+                    for (let i = 0; i < sliceCount; i++) {
+                        let backgCol = 0xffffff
+                        let startAngle = Math.PI + ((Math.PI - arcAngle) / 2) + (angle * i);
+                        var semicircle = new PIXI.Graphics();
+                        semicircle.beginFill(backgCol);
+                        semicircle.lineStyle(lineSize, 0xffffff);
+                        semicircle.arc(0, 0, radius, startAngle, startAngle + angle, false);
+                        semicircle.lineTo(0, 0);
+                        let coord = ksttool.math.get_coordinate_distance_away_from_center_with_radian(radius, { x: 0, y: 0 }, startAngle + Math.PI);
+                        semicircle.lineTo(coord.x, coord.y);
+                        semicircle.x = width / 2;
+                        semicircle.y = (width / 2) - 20 + radius * 0.6;
+                        app.stage.addChild(semicircle);
+                        num -= 1;
+                    }
+                }
+
+
+            }
+
+
+
+            // ===================================================
+            if (true) {
+                let sliceChart = document.createElement("div");
+                sliceChart.innerText = "SliceChart & Percentage ";
+
+                sliceChart.style = "background-color: #041e42; color:#f7f7f7; font-size: 30px; margin-top: 50px;"; // @@@
+                document.querySelector(".sitebody").appendChild(sliceChart);
+
+
+                let sprayChart = document.createElement("div");
+                let pixiSpan = document.createElement("div");
+                let selector = document.createElement("div");
+
+                sprayChart.appendChild(pixiSpan);
+                sprayChart.appendChild(selector);
+                document.querySelector(".sitebody").appendChild(sprayChart);
+
+                let list1 = await fetch(`https://mlbplayerlist.com/percentage?playerInfo=${pId}`);
+                list1 = await list1.json();
+                let zoneData = list1;
+
+
+                function findMax(zoneData, iter) {
+                    let max = 0;
+                    let num = 0;
+                    for (let i = iter; i < 4 + iter; i++) {
+                        let zone = `zone${i}`;
+                        if (Number(zoneData[zone]) > max) {
+                            max = Number(zoneData[zone]);
+                            num = i;
+                        }
+                    }
+                    return num;
+                }
+
+                let infieldHighPer = (findMax(zoneData, 1));
+                let outfieldHighPer = (findMax(zoneData, 5));
+
+                let ratio_ = 0.7;
+                let app = new PIXI.Application({
+                    width: 800 * ratio_,
+                    height: 800 * ratio_,
+                    antialias: true,
+                    resolution: window.devicePixelRatio,
+                    
+                    backgroundColor: 0x04981D,
+                    autoDensity: true,
+                });
+                let { width, height } = app.screen;
+                pixiSpan.appendChild(app.view);         // ???
+                app.stage.sortableChildren = true;           // ??? 
+
+                let lineSize = 2 * ratio_;
+                let fontSize = 22 * ratio_;
+                {
+                    let radius = width * 0.65;
+                    let num = 8;
+                    let arcAngle = Math.PI * 0.5;
+                    let sliceCount = 4;
+                    let angle = arcAngle / sliceCount;
+                    for (let i = 0; i < sliceCount; i++) {
+                        let backgCol = num === outfieldHighPer ? 0xFF0000 : 0x808080;
+                        let startAngle = Math.PI + ((Math.PI - arcAngle) / 2) + (angle * i);
+                        var semicircle = new PIXI.Graphics();
+                        semicircle.beginFill(backgCol);
+                        semicircle.lineStyle(lineSize, 0xffffff);
+                        semicircle.arc(0, 0, radius, startAngle, startAngle + angle, false);
+                        semicircle.lineTo(0, 0);
+                        let coord = ksttool.math.get_coordinate_distance_away_from_center_with_radian(radius, { x: 0, y: 0 }, startAngle + Math.PI);
+                        semicircle.lineTo(coord.x, coord.y);
+                        semicircle.x = width / 2;
+                        semicircle.y = (height / 2) + radius * 0.5;
+                        app.stage.addChild(semicircle);
+                        {
+                            let zone = zoneData[`zone${num}`];
+                            let text = new PIXI.Text(`${zone}%`, { fontFamily: 'Arial', fontSize, fill: 0x1000000, align: 'center' });
+
+                            text.x -= text.width / 2
+                            text.y -= text.height / 2
+                            let coord = ksttool.math.get_coordinate_distance_away_from_center_with_radian(radius * 0.85, { x: 0, y: 0 }, startAngle + angle / 2);
+                            text.x -= coord.x;
+                            text.y -= coord.y;
+                            semicircle.addChild(text);
+                        }
+                        num -= 1;
+                    }
+                }
+                {
+                    // let radius = width * 0.65;
+                    // infieldHighPer
+                    let radius = width * 0.5;
+                    let num = 4;
+                    radius *= 0.7;
+                    let arcAngle = Math.PI * 0.5;
+                    let sliceCount = 4;
+                    let angle = arcAngle / sliceCount;
+                    for (let i = 0; i < sliceCount; i++) {
+                        let backgCol = num === infieldHighPer ? 0xFF0000 : 0x808080;
+                        let startAngle = Math.PI + ((Math.PI - arcAngle) / 2) + (angle * i);
+                        var semicircle = new PIXI.Graphics();
+                        semicircle.beginFill(backgCol);
+                        semicircle.lineStyle(lineSize, 0xffffff);
+
+                        semicircle.arc(0, 0, radius, startAngle, startAngle + angle, false);
+                        semicircle.lineTo(0, 0);
+                        let coord = ksttool.math.get_coordinate_distance_away_from_center_with_radian(radius, { x: 0, y: 0 }, startAngle + Math.PI);
+                        semicircle.lineTo(coord.x, coord.y);
+                        semicircle.x = width / 2;
+                        semicircle.y = (height / 2) + (width * 0.65) * 0.5;
+                        app.stage.addChild(semicircle);
+                        {
+                            let zone = zoneData[`zone${num}`];
+                            let text = new PIXI.Text(`${zone}%`, { fontFamily: 'Arial', fontSize: 17, fill: 0x1000000, align: 'center' });
+                            text.x -= text.width / 2
+                            text.y -= text.height / 1
+                            let coord = ksttool.math.get_coordinate_distance_away_from_center_with_radian(radius * 0.8, { x: 0, y: 0 }, startAngle + angle / 2);
+                            text.x -= coord.x;
+                            text.y -= coord.y;
+                            semicircle.addChild(text);
+                        }
+                        num -= 1;
+                    }
+                }
+
+                let zone = {
+                    width: 180 * ratio_,
+                    height: 240 * ratio_,
+                };
+
+                let ratio = 1 * ratio_;
+                let gridColor = 0x000000;
+                let thickness = 2 * ratio_;
+                {
+                    for (let i = 0; i < 9; i++) {
+                        let dot = new PIXI.Graphics();
+                        dot.beginFill(gridColor);
+                        dot.drawRect(0, 0, width, thickness);
+                        dot.endFill();
+                        app.stage.addChild(dot);
+                        dot.y = (i * 100 * ratio_) - (thickness * 0.5);
+                        dot.alpha = 0.3;
+                    }
+                }
+                {
+                    for (let i = 0; i < 9; i++) {
+                        let dot = new PIXI.Graphics();
+                        dot.beginFill(gridColor);
+                        dot.drawRect(0, 0, thickness, height);
+                        dot.endFill();
+                        app.stage.addChild(dot);
+                        dot.x = (i * 100 * ratio_) - (thickness * 0.5);
+                        dot.alpha = 0.3;
+                    }
+                }
+            }
+
+
+
+            let goBackButton = document.createElement("button");
+            goBackButton.style.backgroundColor = "#041E42";
+            var a = document.createElement('a');
+            var link = document.createTextNode("previousPage");
+            a.appendChild(link);
+            a.style.color = "#FFFFFF";
+            a.style.fontFamily = "Helvetica";
+            goBackButton.style.height = "70px";
+            goBackButton.style.marginTop =  "50px";
+            a.href = "https://mlbplayerlist.com/2017Stats";
+            goBackButton.appendChild(a);
+            document.querySelector(".sitebody").appendChild(goBackButton);
+        }) 
+    </script>
+</body>
+
+
+
+</html>

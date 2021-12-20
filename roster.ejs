@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=`${teamAdditionalInfo["name"]} Page`%></title>
+    <link rel="stylesheet" href="/index.css">
+    <style>
+        .nameDivPa {
+            text-align: center;
+        }
+        body {
+            background: #5c6878;;
+            color:black;
+        }
+        
+        .sitebody{
+            background-color: #fff;
+            width:1248px;
+            margin: 0 auto;
+            padding:10px;
+        }
+        .nameDiv {
+            /* margin-left:25%; */
+            /* transform: translate(-50%); */
+
+            text-align: left;
+            display: inline-block;
+            width: 300px;
+            
+        }
+
+        .header>th {
+            background-color: #333;
+            text-align: center;
+        }
+
+        tr>td {
+            /* text-align: left;             */
+            background-color: white;
+        }
+
+        table {
+            width: 100%
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #555;
+            border-collapse: collapse;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .header__nav-top {
+            background-color: #041e42;
+            position: relative;
+            height: 70px;
+            display: block
+        }
+
+        .menugroup {
+            height: 70px;
+            /* background-color: green; */
+            position: absolute;
+            top: 0px;
+            font-size: 0px;
+            padding: 0px;
+        }
+
+        .header__nav-top>.rightside {
+            right: 0px;
+        }
+
+        .header__nav-top>.leftside {
+            left: 100px;
+        }
+
+        .header__nav-top .menuitem {
+            transform: translateY(-50%);
+            margin-top: 35px;
+            font-size: 30px;
+            border-bottom: 0px solid #ffff00;
+            display: inline-block;
+            /* background-color: red; */
+        }
+
+        .header__nav-top .menuitem>a {
+            color: white;
+        }
+
+        .header__nav-top>.rightside>.menuitem {
+            margin-right: 15px;
+        }
+
+        .header__nav-top>.leftside>.menuitem {
+            margin-left: 15px;
+        }
+
+        #logo {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        div.header__mnav-top {
+            /* background: red; */
+            display: none;
+        }
+
+        #imgtd {
+            width: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        @media screen and (max-width: 600px) {
+            div.header__nav-top {
+                /* background: red; */
+                display: none;
+            }
+
+            div.header__mnav-top {
+                /* background: red; */
+                position: relative;
+                background-color: #041e42;
+                display: block;
+                text-align: center;
+
+            }
+
+            div.header__mnav-top>img {
+                margin-top: 5px;
+            }
+
+            .menugroupMobile {
+                padding: 0px;
+                border: 0px solid red;
+                font-size: 0px;
+                display: table;
+                width: 100%;
+            }
+
+            .menugroupMobile>li {
+                border: 0px solid white;
+                display: table-cell;
+                font-size: 20px;
+                width: 25%;
+            }
+
+            .menugroupMobile>li>a {
+                color: white;
+            }
+
+            #hambergur {
+                position: absolute;
+                left: 5px;
+                top: 0px;
+                font-size: 20px;
+                /* background-color: red; */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header__nav-top">
+        <a href="https://mlbplayerlist.com/project1">
+            <img src="//www.mlbstatic.com/team-logos/league-on-dark/1.svg" id="logo" height="50">
+        </a>
+        <ul class="menugroup leftside">
+            <li class="menuitem"><a href="https://mlbplayerlist.com/project1">Home</a></li>       
+            <li class="menuitem"><a href="https://mlbplayerlist.com/2017Stats">2017Stats</a></li>     
+        </ul>
+        <ul class="menugroup rightside">
+            <!-- <li class="menuitem"><a href="https://mlbplayerlist.com/project1">Home</a></li> -->
+        </ul>
+    </div>
+
+    <div class="header__mnav-top">
+        <div id="hambergur"><i class="fas fa-bars"></i></div>
+        <img src="//www.mlbstatic.com/team-logos/league-on-dark/1.svg" height="25">
+        <ul class="menugroupMobile bottomside">
+            <li class="menuitem"><a href="https://mlbplayerlist.com/schedule">Schedule</a></li>
+        </ul>
+    </div>
+
+    
+    
+    
+    <div class="sitebody"> 
+        <div style="overflow:auto;">
+            <div style="display:inline-block;float: left;"><img alt="player" src="<%= teamInfo["logo"]%> " style="width:150px;"></div>
+            <div style="width:calc(100% - 213px);display:inline-block;float: left;padding:10px;">
+                <div style="font-size: 30px;display:inline-block"> 
+                    <%= teamInfo["name"]%>
+                </div>
+                <table style="width:100%;"> 
+                    <tr> 
+                        <td>Location</td>
+                        <td><%= teamInfo["locationName"]%> </td>
+                        <td>Since</td>
+                        <td><%= teamInfo["firstYearOfPlay"]%></td>
+                    </tr>
+                    <tr> 
+                        <td>Division</td>
+                        <td><%= teamInfo["division"]["name"]%></td>
+                        <td>Park </td>
+                        <td><%= teamInfo["venue"]["name"]%></td>
+                    </tr>
+                </table>
+        </div>
+        <table>
+            <% let position = Object.keys(playerObj); %>
+            <% for(let i=0; i<(position).length; i++){ %>
+                
+                <tr style=" background-color:<%-JSON.parse(teamAdditionalInfo["color"])[0]%>; color : #f7f7f7;">
+                    <th > <%= `${position[i]}` %> </th>
+                    <th> JerseyNumber</th>
+                </tr>
+                <% let player = playerObj[`${position[i]}`]; %>
+                <% for(let j=0; j< player.length; j++){ %>
+                    <tr style="cursor:pointer; text-align: center;" onclick="location.href='https://mlbplayerlist.com/playerInfo?playerInfo=<%=player[j]["person"]["id"]%>&teamId=<%=teamInfo["id"]%>';">
+                        <td> 
+                            <div class="nameDiv"> <img src="<%-teamAdditionalInfo["logo"]%>" height="15" />
+                                <%= player[j]["person"]["fullName"]  %>
+                            </div>
+                        </td>
+                        <td> 
+                            <%= player[j]["jerseyNumber"] === undefined ? "--" : player[j]["jerseyNumber"] %> 
+                        </td>
+                    </tr>
+                <%} %>
+            <% } %>
+        </table>
+    </div>
+
+</body>
+
+</body>
+
+</html>
